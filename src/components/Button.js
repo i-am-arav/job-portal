@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import PropTypes from 'prop-types';
 
-const Button = ({ variant, className = "", children, ...rest }) => {
+const Button = ({ variant, className, onClick, children, ...rest }) => {
   const baseClassName = "rounded py-2 px-4 h-10 min-w-min";
   const variantMapping = {
     primary: "bg-blue-500 hover:bg-blue-600 text-white ",
@@ -17,6 +17,7 @@ const Button = ({ variant, className = "", children, ...rest }) => {
   return (
     <button
       className={cn(baseClassName, variantClassName, className)}
+      onClick={onClick}
       {...rest}
     >
       {children}

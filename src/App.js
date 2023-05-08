@@ -1,10 +1,12 @@
-import FormOne from "./pages/CreateJobForm";
-import JobCard from "./pages/JobCard";
+import CreateJob from "./pages/CreateJob";
+import JobList from "./pages/JobList";
+  
 
 function App() {
   return (
    <>
-     <FormOne />
+     <CreateJob />
+     <JobList />
      </>
   );
 }

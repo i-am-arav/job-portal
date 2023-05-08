@@ -42,7 +42,7 @@ const Input = ({
         className={cn(baseClassName)}
         placeholder={placeholder}
       />
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="relative mt-1 ml-1 text-red-500 text-xs block italic">{error}</p>}
     </div>
   );
 };
