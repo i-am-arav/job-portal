@@ -8,18 +8,16 @@ function Modal({title, body,showModal,handleCloseModal, width,height,padding, ma
         [`p-${padding}`]: !!padding,
         [`m-[${margin}]`]: !!margin
     }
-    const baseClassName = "fixed left-1/2 top-1/2  z-[1000] -translate-y-1/2 -translate-x-1/2 outline-none overflow-y-auto shadow-lg  rounded-sm transition-all duration-300 ease-in-out border border-1"
+    const baseClassName = "fixed left-1/2 top-1/2  z-[1000] -translate-y-1/2 -translate-x-1/2 outline-none overflow-y-auto shadow-lg bg-white  rounded-sm transition-all duration-300 ease-in-out border border-borderGray border-1"
     
   return (
-    <>
         
-    {showModal ? (<div className={cn(baseClassName,allMappingClassNames)}>
+    showModal && (<div className={cn(allMappingClassNames,baseClassName)}>
         {title ? title : null}
         {body ? body: null}
-    </div>): null}
-    </>
+    </div>))
     
-  )
+  
 }
 
 export default Modal

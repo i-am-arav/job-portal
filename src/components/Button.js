@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 const Button = ({ variant, className, onClick, children, ...rest }) => {
   const baseClassName = "rounded py-2 px-4 h-10 min-w-min";
   const variantMapping = {
-    primary: "bg-blue-500 hover:bg-blue-600 text-white ",
+    primary: "bg-primary hover:bg-primary text-font-white z-1 shadow-md",
     secondary:
-      "bg-transparent hover:bg-blue-500 text-blue-500 hover:text-white border border-1 border-blue-500 hover:border-transparent"
+      "bg-transparent hover:bg-primary text-primary hover:text-font-white border border-1 border-primary hover:border-transparent z-1 shadow-md"
   };
   const variants = ["primary", "secondary"];
 

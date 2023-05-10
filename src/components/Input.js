@@ -18,7 +18,7 @@ const Input = ({
   margin,
 }) => {
   const baseClassName =
-    "h-8 py-2 pl-3 w-full border border-gray-300 rounded focus:outline-none focus:border-blue-500";
+    "h-8 py-2 pl-3 w-full border border-borderGray rounded focus:outline-none focus:border-primary placeholder:text-sm placeholder-placeholderColor";
   const allMappingClassName = {
     [`m-${margin}`]: !!margin,
     [`mt-${marginTop}`]: !!marginTop,
@@ -32,7 +32,7 @@ const Input = ({
       {label && (
         <p className="text-sm font-medium mb-1">
           {label}
-          {isRequired && <span className="text-red-500">* </span>}
+          {isRequired && <span className="text-error">* </span>}
         </p>
       )}
       <input
@@ -42,7 +42,7 @@ const Input = ({
         className={cn(baseClassName)}
         placeholder={placeholder}
       />
-      {error && <p className="relative mt-1 ml-1 text-red-500 text-xs block italic">{error}</p>}
+      {error && <p className="relative mt-1 ml-1 text-error text-xs block italic">{error}</p>}
     </div>
   );
 };

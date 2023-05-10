@@ -2,9 +2,8 @@ import React from "react";
 import Button from "../../components/Button";
 import Typography from "../../components/Typography";
 import cn from 'classnames'
-
-const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight, job}) => {
-    const cardClassName = "w-[830px] py-4 px-6 shadow-xl flex "
+const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight,onEditClick, onDeleteClick, job}) => {
+    const cardClassName = "w-[830px] py-4 px-6 shadow-md flex justify-between border border-borderGray border-1 "
     const allMappingClassName = {
         [`m-${margin}`]: !!margin,
         [`mt-${marginTop}`]: !!marginTop,
@@ -16,8 +15,6 @@ const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight, job}
     const {jobTitle,company, location, experienceMin,experienceMax, salaryMax, salaryMin,totalEmployee, applyType} = job || {};
     const employeeCountMapping = (count) => {
       switch(count) {
-        case count < 10 :
-          return '1-10 Employees';
         case count > 10 && count < 50:
           return '11-50 Employees';
         case count > 50 && count < 200:
@@ -25,13 +22,17 @@ const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight, job}
         case count > 200:
           return '201-500 Employees';
         case count > 500:
-          return 'Over 1000 Employees'
+          return 'Over 1000 Employees';
+        default:
+          return '1-10 Employees';
       }
     }
+
   return (
     <div className={cn(cardClassName, allMappingClassName)}>
+      <div className="flex">
       <img
-        className="w-12 h-12 shadow rounded-lg"
+        className="w-12 h-12 shadow rounded-lg " 
         src="https://about.netflix.com/images/meta/netflix-symbol-black.png"
         alt="Company Logo"
       />
@@ -51,6 +52,12 @@ const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight, job}
           {(!applyType || applyType === 'Apply Now') && <Button className="mr-6"> Apply Now </Button>}
           {(!applyType || applyType === 'External Apply') &&<Button variant="secondary"> External Apply </Button>}
         </div>
+      </div>
+      </div>
+      <div className='space-x-2'>
+        
+        <Button onClick={() => onEditClick()} >Edit</Button>
+        <Button onClick={() => onDeleteClick()}>Delete</Button>
       </div>
     </div>
   );
