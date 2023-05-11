@@ -3,7 +3,7 @@ import Button from "../../components/Button";
 import Typography from "../../components/Typography";
 import cn from 'classnames'
 const JobCard = ({margin, marginTop, marginBottom, marginLeft, marginRight,onEditClick, onDeleteClick, job}) => {
-    const cardClassName = "w-[830px] py-4 px-6 shadow-md flex justify-between border border-borderGray border-1 "
+    const cardClassName = "w-[830px] h-[320px] py-4 px-6 shadow-md flex justify-between border border-borderGray border-1 "
     const allMappingClassName = {
         [`m-${margin}`]: !!margin,
         [`mt-${marginTop}`]: !!marginTop,

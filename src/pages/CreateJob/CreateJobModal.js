@@ -4,7 +4,8 @@ import Modal from "../../components/Modal";
 import Typography from "../../components/Typography";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { createJob, updateJob } from "../../api/jobApi";
 
 const initJobPost = {
   jobTitle: "",
@@ -20,14 +21,14 @@ const initJobPost = {
   applyType: "",
 };
 
-const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
+const CreateJobModal = ({ action, jobData, isOpen, enableModal }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [jobPost, setJobPost] = useState(jobData);
   const [formErrors, setFormErrors] = useState({});
   //handle onChange For all the fields
   const onChangeField = (field, value) => {
-    if(Object.keys(formErrors).length) {
-        setFormErrors({});
+    if (Object.keys(formErrors).length) {
+      setFormErrors({});
     }
     setJobPost((prev) => ({ ...prev, [field]: value }));
   };
@@ -44,23 +45,22 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
     setFormErrors(errors);
     return !Object.keys(errors).length;
   };
+  React.useEffect(() => {},[jobPost])
 
   //Validates Step 2 form
   const validateStepTwo = () => {
     const errors = {};
     if (jobPost.experienceMin > jobPost.experienceMax) {
-      errors["experienceMin"] =
-        "Should be less than Maximum";
-      errors['experienceMax'] = 'Should be greater than Minimum'
-     }
+      errors["experienceMin"] = "Should be less than Maximum";
+      errors["experienceMax"] = "Should be greater than Minimum";
+    }
 
     if (jobPost.salaryMin > jobPost.salaryMax) {
       errors["salaryMin"] = "Should be less than Salary Maximum";
-      errors['salaryMax'] = 'Should be greater than Salary Minimum'
+      errors["salaryMax"] = "Should be greater than Salary Minimum";
     }
     setFormErrors(errors);
     return !Object.keys(errors).length;
-    
   };
   //Validates Step 1 form and move it to step2
   const handleNext = () => {
@@ -70,12 +70,25 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async (data) => {
     const isValid = validateStepTwo();
-    if(isValid) {
-        setJobPost(initJobPost);
-        setCurrentStep(1);
-        enableModal(false)
+    if (isValid) {
+      if(action === 'Create') {
+        const result = await createJob({...data,  _id: Math.floor(Math.random() * 1000),
+        _type: 'job-post',});
+        console.log('post call',result)
+      }
+      else {
+        const result = await updateJob({...data, _type:'job-post'})
+        console.log('put call',result)
+      }
+  
+
+      setCurrentStep(1);
+     
+      
+      
+      enableModal(false);
     }
   };
 
@@ -83,7 +96,8 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
     if (currentStep === 1) {
       handleNext();
     } else {
-      handleSave();
+      console.log('jobData',jobPost)
+      handleSave(jobPost);
     }
   };
 
@@ -98,7 +112,7 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
 
   const renderBodyContent = () => {
     return (
-      <div>
+      <>
         {currentStep === 1 ? (
           <StepOne
             jobTitle={jobPost.jobTitle}
@@ -125,7 +139,7 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
             {currentStep === 1 ? "Next" : "Save"}
           </Button>
         </div>
-      </div>
+      </>
     );
   };
   return (
@@ -138,21 +152,19 @@ const CreateJobModal = ({action, jobData, isOpen, enableModal}) => {
         showModal={isOpen}
         handleCloseModal={() => enableModal(false)}
       />
-
-
   );
 };
 
 CreateJobModal.propTypes = {
-    action: PropTypes.string,
-    jobData: PropTypes.object,
-    isOpen: PropTypes.bool,
-    enableModal: PropTypes.func
-}
+  action: PropTypes.string,
+  jobData: PropTypes.object,
+  isOpen: PropTypes.bool,
+  enableModal: PropTypes.func,
+};
 
 CreateJobModal.defaultProps = {
-    action: 'Create',
-    jobData: initJobPost
-}
+  action: "Create",
+  jobData: initJobPost,
+};
 
 export default CreateJobModal;
