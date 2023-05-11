@@ -36,7 +36,7 @@ const JobList = () => {
   }
   const handleDeleteClick = async (id) => {
     try {
-      const response = await deleteJob(id);
+     await deleteJob(id);
     }
     catch(e) {
       console.error(e)
