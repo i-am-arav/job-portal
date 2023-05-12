@@ -80,7 +80,7 @@ const JobCard = ({
             </Typography>
           )}
           <div className="mt-6 flex items-center justify-start">
-            {(!applyType || applyType === "Apply Now") && (
+            {(!applyType || applyType === "Quick Apply") && (
               <Button className="mr-6"> Apply Now </Button>
             )}
             {(!applyType || applyType === "External Apply") && (
