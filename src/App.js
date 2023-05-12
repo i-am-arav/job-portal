@@ -7,7 +7,7 @@ function App() {
   return (
    <Router>
     <Routes>
-      <Route path='/' element={<CreateJob />} />
+      <Route path='/*' element={<CreateJob />} />
       <Route path='/list' element={<JobList />} />
     </Routes>
      </Router>
