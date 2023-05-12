@@ -82,7 +82,6 @@ const CreateJobModal = ({ action, jobData, isOpen, enableModal }) => {
         const result = await updateJob({...data, _type:'job-post'})
         console.log('put call',result)
       }
-  
 
       setCurrentStep(1);
      
@@ -146,6 +145,7 @@ const CreateJobModal = ({ action, jobData, isOpen, enableModal }) => {
       <Modal
         title={renderTitle()}
         body={renderBodyContent()}
+        className='h-[564px] w-[577px] p-8'
         width={577}
         height={564}
         padding={8}
@@ -165,6 +165,8 @@ CreateJobModal.propTypes = {
 CreateJobModal.defaultProps = {
   action: "Create",
   jobData: initJobPost,
+  isOpen: false,
+  enableModal: () => {}
 };
 
 export default CreateJobModal;
