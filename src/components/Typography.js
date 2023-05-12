@@ -38,7 +38,7 @@ const Typography = ({
   };
 
   return (
-    <p className={cn(allMappingClassName, className)} {...rest}>
+    <p className={cn(allMappingClassName, 'font-poppins',className)} {...rest}>
       {children}
     </p>
   );

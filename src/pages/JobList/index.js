@@ -16,6 +16,7 @@ const JobList = () => {
       const result = await getJobs()
       setJobs(result)
       setLoading(false)
+      console.log('jobs',result)
     }
     catch(e) {
       //Show toast for error
@@ -45,7 +46,7 @@ const JobList = () => {
   }
   return (
     loading ? (<div>Loading...</div>) : 
-    <div className='ml-4 grid grid-cols-1 space-y-4 w-screen'>
+    <div className='ml-4 mt-4 grid grid-cols-1 space-y-4 w-screen'>
         {jobs.length > 0 ? jobs.map((job,idx) => <JobCard key={job._id || idx} job={job} onEditClick={() => handleEditClick(job)} onDeleteClick={() => handleDeleteClick(job._id)} />) : (<div>No data found</div>)}
         {openEditJobModal && <CreateJobModal jobData={editJobData}  action={"Edit"} isOpen={openEditJobModal} enableModal={setEditJobModal}  />}
     </div>

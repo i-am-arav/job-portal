@@ -3,7 +3,7 @@ import cn from "classnames";
 import PropTypes from 'prop-types';
 
 const Button = ({ variant, className, onClick, children, ...rest }) => {
-  const baseClassName = "rounded py-2 px-4 h-10 min-w-min";
+  const baseClassName = "rounded py-2 px-4 h-10 min-w-min font-poppins";
   const variantMapping = {
     primary: "bg-primary hover:bg-primary text-font-white z-1 shadow-md",
     secondary:

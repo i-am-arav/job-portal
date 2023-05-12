@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 import colors from 'tailwindcss/colors';
 module.exports = {
   mode: 'jit',
@@ -25,7 +26,11 @@ module.exports = {
       error: '#D86161',
       placeholderColor: '#7A7A7A',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins','serif']
+      }
+    },
   },
   plugins: [],
 }

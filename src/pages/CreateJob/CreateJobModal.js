@@ -45,7 +45,6 @@ const CreateJobModal = ({ action, jobData, isOpen, enableModal }) => {
     setFormErrors(errors);
     return !Object.keys(errors).length;
   };
-  React.useEffect(() => {},[jobPost])
 
   //Validates Step 2 form
   const validateStepTwo = () => {
